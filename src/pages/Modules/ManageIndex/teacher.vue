@@ -241,15 +241,15 @@ export default {
                 axios.post("/api/security/GetOrgDetail", {id}, msg => {
                     this.orgInfo = msg.data;
                     this.getActivities();
-                    axios.post("/api/security/GetUsersByDepartId", {departId: this.orgInfo.ID}, msg => {
+                    axios.post("/api/security/GetUsersByDepartId", {departId: this.orgInfo.ID, pageSize: 1000}, msg => {
                         if (msg.success) {
                             this.membersData = msg.data;
                         }
                     });
                     axios.post("/api/security/GetApplicationsByDeparts", {departId: this.orgInfo.ID}, msg => {
                         if (msg.success) {
-                            this.applicationsData = msg.data;
-                            this.entryForManager.member.badge = this.applicationsData.filter(e => e.State === 3).length;
+                            this.applicationsData = msg.data.filter(e => e.State === 3);
+                            this.entryForManager.member.badge = this.applicationsData.length;
                         }
                     })
                 })
@@ -273,6 +273,7 @@ export default {
                     }
                     this.activityData = msg.data;
                     this.pager.totalRow = msg.totalRow;
+                    console.log(msg, msg.totalRow, this.pager, this.pager.totalRow);
                     let page = 1;
                     let pageSize = this.pager.totalRow;
                     axios.post("/api/org/GetActByDepartId", {Id: this.orgInfo.ID, page, pageSize}, msg => {
