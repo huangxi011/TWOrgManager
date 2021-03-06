@@ -98,10 +98,16 @@ export default {
             this.$Message.warning("你没有权限登录后台");
             this.$router.push({ name: "Index" });
         }
+
         app.getMenus(menus => {
-            this.$set(app, "menus", menus);
-            this.menus = app.menus;
-            this.collapseMenu(this.$route.meta.showAs)
+            if (app.userInfo.isAllInfo) {
+                this.$set(app, "menus", menus);
+                this.menus = app.menus;
+                this.collapseMenu(this.$route.meta.showAs)
+            } else {
+                this.menus = [];
+                this.$Message.warning("你必须填写完所有个人信息才能使用本系统！");
+            }
         })
     },
     methods: {
