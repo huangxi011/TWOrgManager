@@ -17,6 +17,10 @@ let tableCol = {
             key: 'BelongDepart'
         },
         {
+            title: '入社时间',
+            key: 'enterDate'
+        },
+        {
             title: '操作',
             width: 300,
             slot: 'Action'
