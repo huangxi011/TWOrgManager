@@ -196,7 +196,7 @@ export default {
                         name: "OrgDetail",
                         query: {
                             tabSelect: "member",
-                            id: this.$route.query.overrideDptId
+                            id: this.$route.query.overrideDptId || localStorage.getItem("defaultDepartId")
                         }
                     },
                     icon: "md-person-add"
@@ -209,7 +209,7 @@ export default {
                         name: "OrgDetail",
                         query: {
                             tabSelect: "activity",
-                            id: this.$route.query.overrideDptId
+                            id: this.$route.query.overrideDptId || localStorage.getItem("defaultDepartId")
                         }
                     },
                     icon: "md-flag"
