@@ -115,7 +115,7 @@
                                 :id="io.data.ID"
                                 :showText="false"
                                 relate-table="DepartInfo"
-                                :value="`/api/cms/downloadImage?id=${io.data.ID}`"
+                                :value="`/api/cms/downloadImage?usage=avatar&id=${io.data.ID}`"
                                 :disabled="!io.isMyStep || io.fieldAccess.Name === 'r'"
                             />
                         </i-form-item>
