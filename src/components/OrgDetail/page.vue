@@ -150,7 +150,7 @@
                     </i-col>
                 </i-row>
                 <Divider orientation="left">指导老师情况</Divider>
-                <i-row type="flex">
+                <!-- <i-row type="flex">
                     <i-col span="11">
                         <i-form-item label="指导老师工号" prop="GuideCode">
                             <i-input placeholder="请输入..." prefix="md-create" :disabled="io.fieldAccess.GuideCode === 'r' || !io.isMyStep"
@@ -162,7 +162,7 @@
                             <i-input :disabled="!searchedTeacher" v-model="io.data.GuideName"/>
                         </i-form-item>
                     </i-col>
-                </i-row>
+                </i-row> -->
                 <i-row type="flex">
                     <i-col span="11">
                         <i-form-item label="指导老师产生方式">
@@ -175,38 +175,38 @@
                         </i-form-item>
                     </i-col>
                 </i-row>
-                <i-row type="flex">
+                <!-- <i-row type="flex">
                     <i-col span="11">
                         <i-form-item label="指导教师类别">
-                            <i-input :disabled="!searchedTeacher" v-model="io.data.GuideType"/>
+                            <i-input :disabled="io.fieldAccess.GuideType === 'r' || !io.isMyStep" v-model="io.data.GuideType"/>
                         </i-form-item>
                     </i-col>
                     <i-col span="11" offset="2">
                         <i-form-item label="指导教师政治面貌">
-                            <i-input :disabled="!searchedTeacher" v-model="io.data.GuidePolitics"/>
+                            <i-input :disabled="io.fieldAccess.GuidePolitics === 'r' || !io.isMyStep" v-model="io.data.GuidePolitics"/>
                         </i-form-item>
                     </i-col>
-                </i-row>
-                <i-row type="flex">
+                </i-row> -->
+                <!-- <i-row type="flex">
                     <i-col span="11">
                         <i-form-item label="指导教师单位">
-                            <i-input :disabled="!searchedTeacher" v-model="io.data.GuideDepart"/>
+                            <i-input :disabled="io.fieldAccess.GuideDepart === 'r' || !io.isMyStep" v-model="io.data.GuideDepart"/>
                         </i-form-item>
                     </i-col>
                     <i-col span="11" offset="2">
                         <i-form-item label="指导教师手机">
-                            <i-input :disabled="!searchedTeacher" v-model="io.data.GuidePhone"/>
+                            <i-input :disabled="io.fieldAccess.GuidePhone === 'r' || !io.isMyStep" v-model="io.data.GuidePhone"/>
                         </i-form-item>
                     </i-col>
                 </i-row>
                 <i-row type="flex">
                     <i-col span="11">
                         <i-form-item label="指导教师邮箱">
-                            <i-input :disabled="!searchedTeacher" v-model="io.data.GuideEmail"/>
+                            <i-input :disabled="io.fieldAccess.GuideEmail === 'r' || !io.isMyStep" v-model="io.data.GuideEmail"/>
                         </i-form-item>
                     </i-col>
-                </i-row>
-                <Divider orientation="left">社团负责人情况</Divider>
+                </i-row> -->
+                <!-- <Divider orientation="left">社团负责人情况</Divider>
                 <i-row type="flex">
                     <i-col span="11">
                         <i-form-item label="社团负责人学号" prop="ChargerCode">
@@ -255,7 +255,7 @@
                             <i-input :disabled="!searchedCharger" v-model="io.data.ChargerEmail"/>
                         </i-form-item>
                     </i-col>
-                </i-row>
+                </i-row> -->
                 <Divider orientation="left">社团团支部情况</Divider>
                 <i-row type="flex">
                     <i-col span="11">
