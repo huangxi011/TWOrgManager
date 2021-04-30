@@ -67,11 +67,11 @@
                 </i-row>
                 <i-row type="flex">
                     <i-col span="11">
-                        <i-form-item label="章程制定时间">
-                            <i-switch :disabled="io.fieldAccess.HaveDepartRule === 'r' || !io.isMyStep" v-model="io.data.HaveDepartRule" />
-                            <i-date-picker :disabled="!io.data.HaveDepartRule || io.fieldAccess.RuleCreatedOn === 'r' || !io.isMyStep" v-model="io.data.RuleCreatedOn"></i-date-picker>
-                            <i-row v-if="io.data.HaveDepartRule" style="margin-top: 10px">
-                                <i-upload type="drag" :disabled="!io.data.HaveDepartRule || !io.isMyStep" action="/api/cms/UploadFile" :default-file-list="file"
+                        <i-form-item label="章程制定时间" prop="RuleCreatedOn">
+                            <!-- <i-switch :disabled="io.fieldAccess.HaveDepartRule === 'r' || !io.isMyStep" v-model="io.data.HaveDepartRule" /> -->
+                            <i-date-picker :disabled="io.fieldAccess.RuleCreatedOn === 'r' || !io.isMyStep" v-model="io.data.RuleCreatedOn"></i-date-picker>
+                            <i-row style="margin-top: 10px">
+                                <i-upload type="drag" :disabled="!io.isMyStep" action="/api/cms/UploadFile" :default-file-list="file"
                                 :before-upload="beforeUpload" :on-preview="previewFile" :on-remove="removeUpload"
                                 :data="{'usage': 'DepartRule', 'single': true, 'relateTable': 'DepartInfo', 'id': this.io.data.ID, 'fileName': this.fileName}"
                                 :on-success=getFile
@@ -523,6 +523,21 @@ export default {
                 ],
                 ChargerCode: [
                     { required: true, message: '必须填写社团管理员学号', trigger: 'blur' }
+                ],
+                RuleCreatedOn: [
+                    {
+                        // eslint-disable-next-line
+                        validator: (rule, value, callback)=>{
+                            if (!this.io.data.RuleCreatedOn) {
+                                callback(new Error('必须填写章程创建日期'))
+                            } else if (!this.file.length) {
+                                callback(new Error('必须上传社团章程'))
+                            } else {
+
+                            }
+                        },
+                        trigger: 'blur'
+                    }
                 ]
             }
         }
@@ -675,7 +690,11 @@ export default {
                         ...this.upLoad
                     }, msg => {
                         if (msg.success) {
-                            this.$Message.success("提交成功，3秒后关闭页面");
+                            if (this.io.currentStep === "指导老师审核") {
+                                this.$Message.success("已经提交申请，请等待下一步审核。3秒后关闭页面。")
+                            } else {
+                                this.$Message.success("提交成功，3秒后关闭页面。");
+                            }
                             setTimeout(function () {
                                 window.close();
                             }, 3000);
