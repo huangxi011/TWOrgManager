@@ -267,12 +267,12 @@ export default {
                     this.level = msg.level;
                     this.data = msg.data;
                     this.getActivities();
-                    axios.post("/api/security/GetUsersByDepartId", {departId: msg.data.ID}, msg => {
+                    axios.post("/api/security/GetUsersByDepartId", {departId: msg.data.ID, pageSize: 1000}, msg => {
                         this.membersData = msg.data;
                     });
                     axios.post("/api/security/GetApplicationsByDeparts", {departId: msg.data.ID}, msg => {
-                        this.applicationsData = msg.data;
-                        this.entryForManager.member.badge = this.applicationsData.filter(e => e.State === 3).length;
+                        this.applicationsData = msg.data.filter(e => e.State === 3);
+                        this.entryForManager.member.badge = this.applicationsData.length;
                     })
                 })
             });

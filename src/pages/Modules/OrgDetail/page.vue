@@ -120,6 +120,7 @@
                                             </div-->
                                             <i-date-picker :disabled="!orgInfo.HaveDepartRule || !app.checkPermission('Security.SaveDepartDirectly')" v-model="orgInfo.RuleCreatedOn"></i-date-picker>
                                             <a v-if="orgInfo.rule" :href="orgInfo.rule" target="_blank">下载章程</a>
+                                            <Button v-if="orgInfo.removeLink" @click="removeFile(orgInfo.removeLink)" type="text">[删除章程]</Button>
                                         </i-form-item>
                                     </i-col>
                                     <i-col span="11" offset="2">
@@ -608,13 +609,15 @@ export default {
         cancel () {
             this.modalShow = false;
         },
-        removeFile (file) {
-            axios.post("/api/cms/RemoveAttachment", {id: file.ID}, msg => {
-                if (msg.success) {
-                    this.$Message.success('删除文件成功');
-                    this.getFiles();
-                }
-            })
+        removeFile (link) {
+            if (confirm("是否删除该附件？该操作无法还原！")) {
+                axios.post(link, msg => {
+                    if (msg.success) {
+                        this.$Message.success('删除文件成功');
+                        this.getFiles();
+                    }
+                })
+            }
         },
         getFiles () {
             axios.post("/api/cms/GetAttachments", {id: this.orgInfo.ID, relateTable: table, usage: usage}, msg => {

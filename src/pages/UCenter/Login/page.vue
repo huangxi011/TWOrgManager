@@ -79,6 +79,11 @@ export default {
                                     localStorage.userName = "";
                                     localStorage.code = "";
                                 }
+
+                                // if (!ui.isAllInfo) {
+                                //     path = "/manage/profile";
+                                // }
+
                                 this.$router.push(path);
                             } else {
                                 this.$Message.warning(msg.msg);

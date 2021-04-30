@@ -153,6 +153,8 @@ export default {
                     this.$Message.error(msg.msg);
                 } else {
                     this.$Message.success("修改成功");
+                    app.userInfo.isAllInfo = true;
+                    window.location.reload();
                 }
                 });
             });
