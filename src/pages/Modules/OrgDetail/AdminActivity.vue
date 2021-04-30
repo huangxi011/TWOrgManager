@@ -13,8 +13,10 @@ export default {
             this.overrideID = "0636b745-1e62-472a-9d47-eead853f13da";
         } else if (app.checkPermission("Organization.XSLHH")) {
             this.overrideID = "5dde2413-02d1-4ffd-9030-835afad93888";
+        } else if (app.checkPermission("Organization.TeacherAdmin")) {
+            this.overrideID = this.$route.query.overrideDptId || localStorage.getItem("defaultDepartId");
         } else {
-            this.overrideID = ""
+            this.overrideID = "";
         }
     },
     components: {
