@@ -104,22 +104,27 @@
                         </i-col>
                     </i-row>
                     <i-row type="flex" justify="space-between">
-                        <i-form-item label="头像" prop="avatar">
-                            <i-row>
-                            <i-col span="6">
-                                <avatar-uploader
-                                :width="128"
-                                :height="128"
-                                usage="imgAvatar"
-                                single
-                                relate-table="Users"
-                                v-model="model.avatar"
-                                action="/api/security/uploadAvatar"
-                                />
-                            </i-col>
-                            </i-row>
-                            <i-button type="success" style="margin-top:10px" @click="save" :loading="isloading">确认更新</i-button>
-                        </i-form-item>
+                        <i-col span="6">
+                            <i-form-item label="头像" prop="avatar">
+                                <i-row>
+                                    <avatar-uploader
+                                    :width="128"
+                                    :height="128"
+                                    usage="imgAvatar"
+                                    single
+                                    relate-table="Users"
+                                    v-model="model.avatar"
+                                    action="/api/security/uploadAvatar"
+                                    />
+                                </i-row>
+                                <i-button type="success" style="margin-top:10px" @click="save" :loading="isloading">确认更新</i-button>
+                            </i-form-item>
+                        </i-col>
+                        <i-col span="11" v-if="role === '指导老师'">
+                            <i-form-item label="指导老师类别" prop="GuideTeacherType">
+                                <dic-select dic="指导老师类别" v-model="model.GuideTeacherType"/>
+                            </i-form-item>
+                        </i-col>
                     </i-row>
                 </i-form>
             </i-col>
@@ -133,7 +138,7 @@ var _ = require("lodash");
 const axios = require("axios");
 let badDate = new Date("Mon Jan 01 1900 00:00:00 GMT+0805 (中国标准时间)");
 export default {
-  methods: {
+    methods: {
         save () {
             this.isloading = true;
             let form = this.$refs["user-form"];
@@ -175,6 +180,7 @@ export default {
             isloading: false,
             haveJoinCPC: false,
             haveJoinCCYL: false,
+            role: localStorage.getItem("role"),
             model: {
                 avatar: ""
             },
