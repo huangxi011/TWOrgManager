@@ -121,7 +121,7 @@
                         </i-form-item>
                     </i-col>
                     <i-col span="11" offset="2">
-                        <i-form-item label="三张最具代表性的社团照片">
+                        <i-form-item label="三张最具代表性的社团照片" prop="Photo">
                             <br/>
                             <div class="demo-upload-list" v-for="(item,index) in iconicPhoto" :key="index">
                                 <img :src="`/api/cms/Download?id=${item.id}`"/>
@@ -534,6 +534,19 @@ export default {
                                 callback(new Error('必须上传社团章程'))
                             } else {
 
+                            }
+                        },
+                        trigger: 'blur'
+                    }
+                ],
+                Photo: [
+                    {
+                        // eslint-disable-next-line
+                        validator: (rule, value, callback)=>{
+                            if (!this.iconicPhoto.length) {
+                                callback(new Error('必须上传照片'))
+                            } else {
+                                callback()
                             }
                         },
                         trigger: 'blur'
