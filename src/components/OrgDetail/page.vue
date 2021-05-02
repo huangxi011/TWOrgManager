@@ -529,11 +529,11 @@ export default {
                         // eslint-disable-next-line
                         validator: (rule, value, callback)=>{
                             if (!this.io.data.RuleCreatedOn) {
-                                callback(new Error('必须填写章程创建日期'))
+                                callback(new Error('必须填写章程创建日期'));
                             } else if (!this.file.length) {
-                                callback(new Error('必须上传社团章程'))
+                                callback(new Error('必须上传社团章程'));
                             } else {
-
+                                callback();
                             }
                         },
                         trigger: 'blur'
@@ -544,9 +544,9 @@ export default {
                         // eslint-disable-next-line
                         validator: (rule, value, callback)=>{
                             if (!this.iconicPhoto.length) {
-                                callback(new Error('必须上传照片'))
+                                callback(new Error('必须上传照片'));
                             } else {
-                                callback()
+                                callback();
                             }
                         },
                         trigger: 'blur'
@@ -703,8 +703,8 @@ export default {
                         ...this.upLoad
                     }, msg => {
                         if (msg.success) {
-                            if (this.io.currentStep === "指导老师审核") {
-                                this.$Message.success("已经提交申请，请等待下一步审核。3秒后关闭页面。")
+                            if (this.io.currentStep === "指导老师审核" || this.io.currentStep === "填写申请表") {
+                                alert("已经提交申请，请等待下一步审核。3秒后关闭页面。")
                             } else {
                                 this.$Message.success("提交成功，3秒后关闭页面。");
                             }
