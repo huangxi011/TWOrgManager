@@ -29,6 +29,11 @@
                     <Steps :current="currentStep" direction="vertical">
                         <Step title="导入Excel" content="选择本地Excel文件"></Step>
                         <Step title="上传社团信息" content="将社团信息上传至服务器，需要花费一些时间"></Step>
+                        <Step title="刷新社团信息">
+                            <template slot="content">
+                                上传完成后，如果系统数据没有刷新，则可以<Button type="text" @click="updateOrgInfo" style="font-size: 12px;">&gt;&gt;点击此按钮&lt;&lt;</Button>立刻刷新
+                            </template>
+                        </Step>
                     </Steps>
                 </i-col>
             </i-row>
@@ -294,6 +299,7 @@ export default {
         async uploadOrgInfo () {
             this.showUploadProgress = true;
             this.isUploading = true;
+            this.currentStep = 2;
             for (let index in this.tableData) {
                 this.tableData[index].icon = "md-stopwatch";
                 this.tableData[index].color = "#2d8cf0";
@@ -319,8 +325,12 @@ export default {
                 }
             }
             await axios.post("/api/security/UpdateAllOrgs", {});
-            this.currentStep = 2;
+            this.currentStep = 3;
             this.isUploading = false;
+        },
+        async updateOrgInfo () {
+            await axios.post("/api/security/UpdateAllOrgs", {});
+            this.$Message.success("刷新成功");
         }
     }
 };

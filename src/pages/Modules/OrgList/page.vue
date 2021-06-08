@@ -4,7 +4,7 @@
             <template v-slot:extra>
                 <i-row type="flex" :gutter="16">
                     <i-col>
-                        <i-button type="primary" @click="showModal = true">新建社团</i-button>
+                        <i-button type="primary" @click="showModal = true" v-show="false">新建社团</i-button>
                     </i-col>
                     <i-col>
                         <i-input search placeholder="搜索社团名" @on-search="searchOrganization" />
@@ -19,7 +19,7 @@
                 </i-table>
             </i-row>
         </i-card>
-        <i-modal title="新建社团" v-model="showModal" :scrollable="true">
+        <i-modal title="新建社团" v-model="showModal" :scrollable="true" style="display:none;">
             <i-form :model="orgModel" ref="form" :rules="rules">
                 <i-row type="flex" justify="space-around">
                     <i-col>

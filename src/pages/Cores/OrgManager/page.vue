@@ -26,7 +26,7 @@
             <i-form-item label="排序号" prop="Sort">
                 <i-input v-model="model.Sort" type="number" />
                 <div class="help-block">
-                   排序号以<b class="text-info">降序</b>排列
+                   排序号以<b class="text-info">升序</b>排列
                 </div>
             </i-form-item>
         </Form>
