@@ -27,6 +27,11 @@ Vue.use(iView, {
 Vue.component("admin-layout", adminLayout);
 Vue.component("empty-layout", emptyLayout);
 Vue.component("login-layout", loginLayout);
+window._console.log("厦门大学学生社团管理系统")
+window._console.log("开发：黄  玺（厦门米雀软件科技有限公司）")
+window._console.log("       宋润涵（信息学院）")
+window._console.log("       邵良颖（信息学院）")
+window._console.log("       岳  皓（信息学院）")
 let dic = axios._post("/api/config/GetDataDictionary")
 let config = axios._post("/api/config/GetBasicConfig")
 axios.all([dic, config]).then(axios.spread((d, c) => {
