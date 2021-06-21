@@ -32,7 +32,7 @@
                     </div>
                     <i-row>
                         <i-col>
-                            <p class="headline">社团活动申请表</p>
+                            <p class="headline">社团活动备案表</p>
                             <div class="info-row">
                                 <p>活动编号: {{form.data.ActNo ? form.data.ActNo : "（请等待活动审核完成）"}}</p>
                                 <!--p>填表时间：{{form.data.CreatedTime}}</p-->
@@ -526,7 +526,7 @@ export default {
         }
     },
     mounted () {
-        app.title = "打印社团活动申请表";
+        app.title = "打印社团活动备案表";
         this.instanceId = this.$route.query.instanceId;
         this.stepId = this.$route.query.stepId;
         this.actID = this.$route.query.actID === 'undefined' ? '' : this.$route.query.actID;
